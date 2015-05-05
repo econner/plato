@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		078435121AF130FA00DB62FA /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 078435111AF130FA00DB62FA /* Realm.framework */; };
 		078435141AF1311500DB62FA /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078435131AF1311500DB62FA /* libc++.dylib */; };
-		078435161AF1312F00DB62FA /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078435151AF1312F00DB62FA /* RLMSupport.swift */; };
 		0784351C1AF131B900DB62FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784351B1AF131B900DB62FA /* User.swift */; };
 		0784351E1AF1321900DB62FA /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784351D1AF1321900DB62FA /* Discussion.swift */; };
 		078435201AF132F600DB62FA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784351F1AF132F600DB62FA /* Message.swift */; };
+		078435221AF1E99900DB62FA /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078435211AF1E99900DB62FA /* ViewExtensions.swift */; };
+		07ADFA291AF7173100BBB8E0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ADFA281AF7173100BBB8E0 /* Realm.framework */; };
+		07ADFA2B1AF7173900BBB8E0 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ADFA2A1AF7173900BBB8E0 /* RLMSupport.swift */; };
+		07ADFA2D1AF71CA300BBB8E0 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ADFA2C1AF71CA300BBB8E0 /* ContactTableViewCell.swift */; };
+		07DACF5B1AF32B5000AA06EF /* CreateDiscussionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DACF5A1AF32B5000AA06EF /* CreateDiscussionViewController.swift */; };
+		07DACF5D1AF3358100AA06EF /* ChooseContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DACF5C1AF3358100AA06EF /* ChooseContactsViewController.swift */; };
+		07DACF5F1AF33B0B00AA06EF /* NoAnimationPushSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DACF5E1AF33B0B00AA06EF /* NoAnimationPushSegue.swift */; };
 		07E6B3691AF099E500CC2598 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E6B3681AF099E500CC2598 /* AppDelegate.swift */; };
 		07E6B36D1AF099E500CC2598 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E6B36C1AF099E500CC2598 /* SecondViewController.swift */; };
 		07E6B3701AF099E500CC2598 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E6B36E1AF099E500CC2598 /* Main.storyboard */; };
@@ -21,6 +26,8 @@
 		07E6B3811AF099E500CC2598 /* PlatoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E6B3801AF099E500CC2598 /* PlatoTests.swift */; };
 		07E6B38D1AF09CE000CC2598 /* DiscussionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E6B38C1AF09CE000CC2598 /* DiscussionTableViewController.swift */; };
 		07E6B38F1AF09DA200CC2598 /* DiscussionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E6B38E1AF09DA200CC2598 /* DiscussionTableViewCell.swift */; };
+		07E7649F1AF86A8A00188E92 /* ContactPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E7649E1AF86A8A00188E92 /* ContactPickerTextField.swift */; };
+		24F60FED2A79A98754E5F0F0 /* libPods-Plato.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2D5F710F0968B256946467 /* libPods-Plato.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,12 +41,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		078435111AF130FA00DB62FA /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../../Downloads/realm-cocoa-0.91.3/ios/Realm.framework"; sourceTree = "<group>"; };
+		077106F71AF87CDA00E77E94 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		078435131AF1311500DB62FA /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		078435151AF1312F00DB62FA /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RLMSupport.swift; path = "../../../../Downloads/realm-cocoa-0.91.3/Swift/RLMSupport.swift"; sourceTree = "<group>"; };
 		0784351B1AF131B900DB62FA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0784351D1AF1321900DB62FA /* Discussion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		0784351F1AF132F600DB62FA /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		078435211AF1E99900DB62FA /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		07ADFA281AF7173100BBB8E0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		07ADFA2A1AF7173900BBB8E0 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
+		07ADFA2C1AF71CA300BBB8E0 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactTableViewCell.swift; path = ../../Plato/Plato/ContactTableViewCell.swift; sourceTree = "<group>"; };
+		07DACF5A1AF32B5000AA06EF /* CreateDiscussionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDiscussionViewController.swift; sourceTree = "<group>"; };
+		07DACF5C1AF3358100AA06EF /* ChooseContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseContactsViewController.swift; sourceTree = "<group>"; };
+		07DACF5E1AF33B0B00AA06EF /* NoAnimationPushSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAnimationPushSegue.swift; sourceTree = "<group>"; };
 		07E6B3631AF099E500CC2598 /* Plato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07E6B3671AF099E500CC2598 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07E6B3681AF099E500CC2598 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +65,10 @@
 		07E6B3801AF099E500CC2598 /* PlatoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatoTests.swift; sourceTree = "<group>"; };
 		07E6B38C1AF09CE000CC2598 /* DiscussionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionTableViewController.swift; sourceTree = "<group>"; };
 		07E6B38E1AF09DA200CC2598 /* DiscussionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionTableViewCell.swift; sourceTree = "<group>"; };
+		07E7649E1AF86A8A00188E92 /* ContactPickerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerTextField.swift; sourceTree = "<group>"; };
+		416BAE06307F4B760316170B /* Pods-Plato.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plato.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plato/Pods-Plato.release.xcconfig"; sourceTree = "<group>"; };
+		7B479E48CD51E5E032879D0B /* Pods-Plato.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plato.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plato/Pods-Plato.debug.xcconfig"; sourceTree = "<group>"; };
+		7E2D5F710F0968B256946467 /* libPods-Plato.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Plato.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +76,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07ADFA291AF7173100BBB8E0 /* Realm.framework in Frameworks */,
 				078435141AF1311500DB62FA /* libc++.dylib in Frameworks */,
-				078435121AF130FA00DB62FA /* Realm.framework in Frameworks */,
+				24F60FED2A79A98754E5F0F0 /* libPods-Plato.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +96,9 @@
 			isa = PBXGroup;
 			children = (
 				07E6B36C1AF099E500CC2598 /* SecondViewController.swift */,
+				07DACF5A1AF32B5000AA06EF /* CreateDiscussionViewController.swift */,
 				07E6B38C1AF09CE000CC2598 /* DiscussionTableViewController.swift */,
+				07DACF5C1AF3358100AA06EF /* ChooseContactsViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -87,6 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				07E6B38E1AF09DA200CC2598 /* DiscussionTableViewCell.swift */,
+				078435211AF1E99900DB62FA /* ViewExtensions.swift */,
+				07DACF5E1AF33B0B00AA06EF /* NoAnimationPushSegue.swift */,
+				07ADFA2C1AF71CA300BBB8E0 /* ContactTableViewCell.swift */,
+				07E7649E1AF86A8A00188E92 /* ContactPickerTextField.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -94,9 +118,9 @@
 		078435191AF1316800DB62FA /* realm */ = {
 			isa = PBXGroup;
 			children = (
-				078435151AF1312F00DB62FA /* RLMSupport.swift */,
 				078435131AF1311500DB62FA /* libc++.dylib */,
-				078435111AF130FA00DB62FA /* Realm.framework */,
+				07ADFA2A1AF7173900BBB8E0 /* RLMSupport.swift */,
+				07ADFA281AF7173100BBB8E0 /* Realm.framework */,
 			);
 			name = realm;
 			sourceTree = "<group>";
@@ -117,6 +141,8 @@
 				07E6B3651AF099E500CC2598 /* Plato */,
 				07E6B37D1AF099E500CC2598 /* PlatoTests */,
 				07E6B3641AF099E500CC2598 /* Products */,
+				A78E24A9DEEC00E337958E39 /* Pods */,
+				3AC0C9FDA50FD54523F81794 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,6 +167,7 @@
 				07E6B3731AF099E500CC2598 /* LaunchScreen.xib */,
 				078435191AF1316800DB62FA /* realm */,
 				07E6B3661AF099E500CC2598 /* Supporting Files */,
+				077106F71AF87CDA00E77E94 /* Header.h */,
 			);
 			path = Plato;
 			sourceTree = "<group>";
@@ -170,6 +197,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		3AC0C9FDA50FD54523F81794 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E2D5F710F0968B256946467 /* libPods-Plato.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A78E24A9DEEC00E337958E39 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7B479E48CD51E5E032879D0B /* Pods-Plato.debug.xcconfig */,
+				416BAE06307F4B760316170B /* Pods-Plato.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -177,9 +221,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07E6B3841AF099E500CC2598 /* Build configuration list for PBXNativeTarget "Plato" */;
 			buildPhases = (
+				CCCD624BF7BED71550EBA015 /* Check Pods Manifest.lock */,
 				07E6B35F1AF099E500CC2598 /* Sources */,
 				07E6B3601AF099E500CC2598 /* Frameworks */,
 				07E6B3611AF099E500CC2598 /* Resources */,
+				A9D1F33B8315014841F22FCF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -265,19 +311,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A9D1F33B8315014841F22FCF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Plato/Pods-Plato-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCCD624BF7BED71550EBA015 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		07E6B35F1AF099E500CC2598 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07ADFA2D1AF71CA300BBB8E0 /* ContactTableViewCell.swift in Sources */,
 				07E6B36D1AF099E500CC2598 /* SecondViewController.swift in Sources */,
 				07E6B3691AF099E500CC2598 /* AppDelegate.swift in Sources */,
+				07DACF5B1AF32B5000AA06EF /* CreateDiscussionViewController.swift in Sources */,
 				0784351C1AF131B900DB62FA /* User.swift in Sources */,
 				0784351E1AF1321900DB62FA /* Discussion.swift in Sources */,
-				078435161AF1312F00DB62FA /* RLMSupport.swift in Sources */,
+				07DACF5D1AF3358100AA06EF /* ChooseContactsViewController.swift in Sources */,
+				078435221AF1E99900DB62FA /* ViewExtensions.swift in Sources */,
+				07E7649F1AF86A8A00188E92 /* ContactPickerTextField.swift in Sources */,
 				078435201AF132F600DB62FA /* Message.swift in Sources */,
 				07E6B38D1AF09CE000CC2598 /* DiscussionTableViewController.swift in Sources */,
+				07ADFA2B1AF7173900BBB8E0 /* RLMSupport.swift in Sources */,
 				07E6B38F1AF09DA200CC2598 /* DiscussionTableViewCell.swift in Sources */,
+				07DACF5F1AF33B0B00AA06EF /* NoAnimationPushSegue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,29 +487,35 @@
 		};
 		07E6B3851AF099E500CC2598 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B479E48CD51E5E032879D0B /* Pods-Plato.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/eric/Downloads/realm-cocoa-0.91.3/ios",
+					"$(PROJECT_DIR)/Plato",
 				);
 				INFOPLIST_FILE = Plato/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Plato/Header.h;
 			};
 			name = Debug;
 		};
 		07E6B3861AF099E500CC2598 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 416BAE06307F4B760316170B /* Pods-Plato.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/eric/Downloads/realm-cocoa-0.91.3/ios",
+					"$(PROJECT_DIR)/Plato",
 				);
 				INFOPLIST_FILE = Plato/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Plato/Header.h;
 			};
 			name = Release;
 		};

@@ -21,8 +21,6 @@ class DiscussionTableViewCell: UITableViewCell {
             thumbnail.image = UIImage(data: NSData(contentsOfURL: NSURL(string: discussion!.image_url)!)!)
         }
     }
-
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
