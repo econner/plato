@@ -8,71 +8,167 @@
 
 import UIKit
 
-class ChooseContactsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class Contact : Equatable {
+    var name = ""
+}
 
-    @IBOutlet weak var toField: UITextField!
+func ==(lhs: Contact, rhs: Contact) -> Bool
+{
+    return lhs.name == rhs.name
+}
+//
+//protocol ChooseContactsDelegate {
+//    func didSelectContacts:
+//}
+
+class ChooseContactsViewController: UIViewController, THContactPickerDelegate, UITableViewDataSource, UITableViewDelegate {
+    
+    var contacts: [Contact] = []
+    var privateSelectedContacts: [Contact] = []
+    
+    var contactPickerView: THContactPickerView!
+    var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        println("ChooseContactsViewController:viewDidLoad")
         
-        self.navigationItem.backBarButtonItem?.title = "Cancel"
-        self.toField.becomeFirstResponder()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        let names = ["Hari Arul", "Eric Conner", "Isabel Sosa", "Daniel Lynch", "Lily Guo", "Andres Morales", "John Smith", "Joe Vrion", "Angela Merkel"]
+        for name in names {
+            var contact = Contact()
+            contact.name = name
+            contacts.append(contact)
+        }
+        
+        self.edgesForExtendedLayout = UIRectEdge.None
+        
+        self.contactPickerView = THContactPickerView(frame: CGRectMake(0, 0, self.view.frame.size.width, 100.0))
+        self.contactPickerView.setPromptLabelText("To:")
+        self.contactPickerView.setPlaceholderLabelText("")
+        self.contactPickerView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin|UIViewAutoresizing.FlexibleWidth
+        self.contactPickerView.delegate = self
+        self.view.addSubview(self.contactPickerView)
+        
+        let tableFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.contactPickerView.frame.size.height)
+        self.tableView = UITableView(frame: tableFrame, style: UITableViewStyle.Plain)
+        self.tableView.autoresizingMask = UIViewAutoresizing.FlexibleHeight|UIViewAutoresizing.FlexibleWidth
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.backgroundColor = UIColor.blueColor()
+        self.view.insertSubview(self.tableView, belowSubview: self.contactPickerView)
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.toField.becomeFirstResponder()
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
     
-    // MARK: - Table view data source
+    // MARK: - Layout Methods
+    func adjustTableFrame() {
+        let yOffset = self.contactPickerView.frame.origin.y + self.contactPickerView.frame.size.height
+        let tableFrame = CGRectMake(0, yOffset, self.view.frame.size.width, self.view.frame.size.height - yOffset)
+        self.tableView.frame = tableFrame;
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.adjustTableFrame()
+    }
+    
+    // MARK: - UITableView Delegate and Datasource functions
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 5
+        return self.contacts.count
     }
     
-    let names = ["Hari Arul", "Eric Conner", "Isabel Sosa", "Daniel Lynch", "Lily Guo", "Andres Morales"]
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath:indexPath) as? ContactTableViewCell {
-            
-            cell.nameLabel.text = names[indexPath.row]
-            return cell
-            
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell  {
+        var cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("THContactPickerContactCell") as? UITableViewCell
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "THContactPickerContactCell")
         }
-        return UITableViewCell()
+        
+        cell!.textLabel!.text = self.contacts[indexPath.row].name
+        
+        if contains(self.privateSelectedContacts, self.contacts[indexPath.row]) {
+            cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
+        } else {
+            cell!.accessoryType = UITableViewCellAccessoryType.None
+        }
+        
+        return cell!
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println(toField.text)
-        if toField.text != "" {
-            toField.text = toField.text + ", " + names[indexPath.row]
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        var cell = tableView.cellForRowAtIndexPath(indexPath)
+        var contact = self.contacts[indexPath.row]
+        var contactTitle = self.contacts[indexPath.row].name
+        
+        if contains(self.privateSelectedContacts, contact) {
+            cell!.accessoryType = UITableViewCellAccessoryType.None
+            if let index = find(self.privateSelectedContacts, contact) {
+                self.privateSelectedContacts.removeAtIndex(index)
+            }
+            self.contactPickerView.removeContact(contact)
         } else {
-            toField.text = names[indexPath.row]
+            // Contact has not been selected, add it to THContactPickerView
+            cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
+            self.privateSelectedContacts.append(contact)
+            self.contactPickerView.addContact(contact, withName:contactTitle)
         }
         
+        // TODO: Add back didChangeSelectedItems?
+        self.tableView.reloadData()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK - THContactPickerDelegate
+    
+    func contactPickerTextViewDidChange(textViewText: String) {
+        // TODO: Fix when dealing with filteredContacts
+        //        if textViewText == "" {
+        //            self.filteredContacts = self.contacts;
+        //        } else {
+        //            NSPredicate *predicate = [self newFilteringPredicateWithText:textViewText];
+        //            self.filteredContacts = [self.contacts filteredArrayUsingPredicate:predicate];
+        //        }
+        //        self.tableView.reloadData();
     }
-    */
-
+    
+    func contactPickerDidResize(contactPickerView: THContactPickerView) {
+        var frame = self.tableView.frame;
+        frame.origin.y = contactPickerView.frame.size.height + contactPickerView.frame.origin.y;
+        self.tableView.frame = frame;
+    }
+    
+    func contactPickerDidRemoveContact(contactObj: AnyObject) {
+        let contact = contactObj as! Contact
+        if let index = find(self.privateSelectedContacts, contact) {
+            self.privateSelectedContacts.removeAtIndex(index)
+            var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow:index, inSection:0))
+            cell?.accessoryType = UITableViewCellAccessoryType.None
+            
+            // self.didChangeSelectedItems()
+        }
+    }
+    
+    func contactPickerTextFieldShouldReturn(textField: UITextField) -> Bool {
+        // TODO: Not sure if this is needed?
+        //        if count(textField.text) > 0 {
+        //            var contactName = textField.text
+        //            self.privateSelectedContacts.append(contact);
+        //            self.contactPickerView.addContact(contact, withName:contact);
+        //        }
+        return true
+    }
 }
