@@ -25,6 +25,7 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
     
     var contacts: [Contact] = []
     var privateSelectedContacts: [Contact] = []
+    var filteredContacts: [Contact] = []
     
     var contactPickerView: THContactPickerView!
     var tableView: UITableView!
@@ -32,6 +33,8 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         println("ChooseContactsViewController:viewDidLoad")
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "finishSelectingContacts:")
         
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -41,6 +44,7 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
             contact.name = name
             contacts.append(contact)
         }
+        self.filteredContacts = contacts
         
         self.edgesForExtendedLayout = UIRectEdge.None
         
@@ -50,6 +54,7 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
         self.contactPickerView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin|UIViewAutoresizing.FlexibleWidth
         self.contactPickerView.delegate = self
         self.view.addSubview(self.contactPickerView)
+        self.contactPickerView.becomeFirstResponder()
         
         let tableFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.contactPickerView.frame.size.height)
         self.tableView = UITableView(frame: tableFrame, style: UITableViewStyle.Plain)
@@ -58,10 +63,19 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
         self.tableView.dataSource = self
         self.tableView.backgroundColor = UIColor.blueColor()
         self.view.insertSubview(self.tableView, belowSubview: self.contactPickerView)
+        
+        for contact in self.privateSelectedContacts {
+            self.contactPickerView.addContact(contact, withName: contact.name)
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {
         
+    }
+    
+    @IBAction func finishSelectingContacts(sender: UIButton) {
+        performSegueWithIdentifier("unwindToCreateDiscussion", sender: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,7 +102,7 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.contacts.count
+        return self.filteredContacts.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell  {
@@ -97,9 +111,9 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "THContactPickerContactCell")
         }
         
-        cell!.textLabel!.text = self.contacts[indexPath.row].name
+        cell!.textLabel!.text = self.filteredContacts[indexPath.row].name
         
-        if contains(self.privateSelectedContacts, self.contacts[indexPath.row]) {
+        if contains(self.privateSelectedContacts, self.filteredContacts[indexPath.row]) {
             cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
         } else {
             cell!.accessoryType = UITableViewCellAccessoryType.None
@@ -112,12 +126,14 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         var cell = tableView.cellForRowAtIndexPath(indexPath)
-        var contact = self.contacts[indexPath.row]
-        var contactTitle = self.contacts[indexPath.row].name
+        var contact = self.filteredContacts[indexPath.row]
+        var contactTitle = self.filteredContacts[indexPath.row].name
         
         if contains(self.privateSelectedContacts, contact) {
+            println("PRIV SELECTED CONTACTS \(contact.name)")
             cell!.accessoryType = UITableViewCellAccessoryType.None
             if let index = find(self.privateSelectedContacts, contact) {
+                self.contactPickerView.removeContact(self.privateSelectedContacts[index])
                 self.privateSelectedContacts.removeAtIndex(index)
             }
             self.contactPickerView.removeContact(contact)
@@ -129,46 +145,49 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
         }
         
         // TODO: Add back didChangeSelectedItems?
+        self.filteredContacts = self.contacts
         self.tableView.reloadData()
     }
     
     // MARK - THContactPickerDelegate
     
     func contactPickerTextViewDidChange(textViewText: String) {
-        // TODO: Fix when dealing with filteredContacts
-        //        if textViewText == "" {
-        //            self.filteredContacts = self.contacts;
-        //        } else {
-        //            NSPredicate *predicate = [self newFilteringPredicateWithText:textViewText];
-        //            self.filteredContacts = [self.contacts filteredArrayUsingPredicate:predicate];
-        //        }
-        //        self.tableView.reloadData();
+        if textViewText == "" {
+            self.filteredContacts = self.contacts
+        } else {
+            let predicate = NSPredicate(format:"self contains[cd] %@", textViewText)
+            self.filteredContacts = self.contacts.filter() { predicate.evaluateWithObject($0.name) }
+        }
+        self.tableView.reloadData();
     }
     
     func contactPickerDidResize(contactPickerView: THContactPickerView) {
+        println(self.tableView)
         var frame = self.tableView.frame;
         frame.origin.y = contactPickerView.frame.size.height + contactPickerView.frame.origin.y;
         self.tableView.frame = frame;
     }
     
     func contactPickerDidRemoveContact(contactObj: AnyObject) {
-        let contact = contactObj as! Contact
-        if let index = find(self.privateSelectedContacts, contact) {
-            self.privateSelectedContacts.removeAtIndex(index)
-            var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow:index, inSection:0))
-            cell?.accessoryType = UITableViewCellAccessoryType.None
-            
-            // self.didChangeSelectedItems()
+        if let contact = contactObj as? Contact {
+            println("Removed contact: \(contact)")
+            if let index = find(self.privateSelectedContacts, contact) {
+                self.privateSelectedContacts.removeAtIndex(index)
+                var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow:index, inSection:0))
+                cell?.accessoryType = UITableViewCellAccessoryType.None
+            }
         }
     }
     
     func contactPickerTextFieldShouldReturn(textField: UITextField) -> Bool {
-        // TODO: Not sure if this is needed?
-        //        if count(textField.text) > 0 {
-        //            var contactName = textField.text
-        //            self.privateSelectedContacts.append(contact);
-        //            self.contactPickerView.addContact(contact, withName:contact);
-        //        }
+        println("contactPickerTextFieldShouldReturn")
+        if count(textField.text) > 0 {
+            var contactName = textField.text
+            var contact = Contact()
+            contact.name = contactName
+            self.privateSelectedContacts.append(contact);
+            self.contactPickerView.addContact(contact, withName:contactName);
+        }
         return true
     }
 }
