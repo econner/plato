@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		024B5A02E938499B4F4E3D79 /* Pods_Plato.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6562A287E2AB0BAB38F717A3 /* Pods_Plato.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		07113F491B025A2800481D57 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07113F481B025A2800481D57 /* LoginViewController.swift */; };
+		077425881B024A5D00C45FDF /* PlatoApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077425871B024A5D00C45FDF /* PlatoApiClient.swift */; };
 		078435141AF1311500DB62FA /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078435131AF1311500DB62FA /* libc++.dylib */; };
 		0784351C1AF131B900DB62FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784351B1AF131B900DB62FA /* User.swift */; };
 		0784351E1AF1321900DB62FA /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784351D1AF1321900DB62FA /* Discussion.swift */; };
@@ -27,7 +30,6 @@
 		07E6B38D1AF09CE000CC2598 /* DiscussionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E6B38C1AF09CE000CC2598 /* DiscussionTableViewController.swift */; };
 		07E6B38F1AF09DA200CC2598 /* DiscussionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E6B38E1AF09DA200CC2598 /* DiscussionTableViewCell.swift */; };
 		07E7649F1AF86A8A00188E92 /* ContactPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E7649E1AF86A8A00188E92 /* ContactPickerTextField.swift */; };
-		24F60FED2A79A98754E5F0F0 /* libPods-Plato.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2D5F710F0968B256946467 /* libPods-Plato.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		077106F71AF87CDA00E77E94 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		07113F481B025A2800481D57 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		077425871B024A5D00C45FDF /* PlatoApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatoApiClient.swift; sourceTree = "<group>"; };
 		078435131AF1311500DB62FA /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		0784351B1AF131B900DB62FA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0784351D1AF1321900DB62FA /* Discussion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
@@ -67,8 +70,8 @@
 		07E6B38E1AF09DA200CC2598 /* DiscussionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionTableViewCell.swift; sourceTree = "<group>"; };
 		07E7649E1AF86A8A00188E92 /* ContactPickerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerTextField.swift; sourceTree = "<group>"; };
 		416BAE06307F4B760316170B /* Pods-Plato.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plato.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plato/Pods-Plato.release.xcconfig"; sourceTree = "<group>"; };
+		6562A287E2AB0BAB38F717A3 /* Pods_Plato.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plato.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B479E48CD51E5E032879D0B /* Pods-Plato.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plato.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plato/Pods-Plato.debug.xcconfig"; sourceTree = "<group>"; };
-		7E2D5F710F0968B256946467 /* libPods-Plato.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Plato.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +81,7 @@
 			files = (
 				07ADFA291AF7173100BBB8E0 /* Realm.framework in Frameworks */,
 				078435141AF1311500DB62FA /* libc++.dylib in Frameworks */,
-				24F60FED2A79A98754E5F0F0 /* libPods-Plato.a in Frameworks */,
+				024B5A02E938499B4F4E3D79 /* Pods_Plato.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,9 +95,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		077425861B024A4B00C45FDF /* logic */ = {
+			isa = PBXGroup;
+			children = (
+				077425871B024A5D00C45FDF /* PlatoApiClient.swift */,
+			);
+			name = logic;
+			sourceTree = "<group>";
+		};
 		078435171AF1313E00DB62FA /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				07113F481B025A2800481D57 /* LoginViewController.swift */,
 				07E6B36C1AF099E500CC2598 /* SecondViewController.swift */,
 				07DACF5A1AF32B5000AA06EF /* CreateDiscussionViewController.swift */,
 				07E6B38C1AF09CE000CC2598 /* DiscussionTableViewController.swift */,
@@ -158,6 +170,7 @@
 		07E6B3651AF099E500CC2598 /* Plato */ = {
 			isa = PBXGroup;
 			children = (
+				077425861B024A4B00C45FDF /* logic */,
 				0784351A1AF1319000DB62FA /* models */,
 				078435181AF1315800DB62FA /* views */,
 				078435171AF1313E00DB62FA /* controllers */,
@@ -167,7 +180,6 @@
 				07E6B3731AF099E500CC2598 /* LaunchScreen.xib */,
 				078435191AF1316800DB62FA /* realm */,
 				07E6B3661AF099E500CC2598 /* Supporting Files */,
-				077106F71AF87CDA00E77E94 /* Header.h */,
 			);
 			path = Plato;
 			sourceTree = "<group>";
@@ -200,7 +212,7 @@
 		3AC0C9FDA50FD54523F81794 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7E2D5F710F0968B256946467 /* libPods-Plato.a */,
+				6562A287E2AB0BAB38F717A3 /* Pods_Plato.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -226,6 +238,7 @@
 				07E6B3601AF099E500CC2598 /* Frameworks */,
 				07E6B3611AF099E500CC2598 /* Resources */,
 				A9D1F33B8315014841F22FCF /* Copy Pods Resources */,
+				8E3FB837EFFDDE48A5F1F4DB /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -312,6 +325,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8E3FB837EFFDDE48A5F1F4DB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Plato/Pods-Plato-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A9D1F33B8315014841F22FCF /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -350,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07ADFA2D1AF71CA300BBB8E0 /* ContactTableViewCell.swift in Sources */,
+				077425881B024A5D00C45FDF /* PlatoApiClient.swift in Sources */,
 				07E6B36D1AF099E500CC2598 /* SecondViewController.swift in Sources */,
 				07E6B3691AF099E500CC2598 /* AppDelegate.swift in Sources */,
 				07DACF5B1AF32B5000AA06EF /* CreateDiscussionViewController.swift in Sources */,
@@ -360,6 +389,7 @@
 				07E7649F1AF86A8A00188E92 /* ContactPickerTextField.swift in Sources */,
 				078435201AF132F600DB62FA /* Message.swift in Sources */,
 				07E6B38D1AF09CE000CC2598 /* DiscussionTableViewController.swift in Sources */,
+				07113F491B025A2800481D57 /* LoginViewController.swift in Sources */,
 				07ADFA2B1AF7173900BBB8E0 /* RLMSupport.swift in Sources */,
 				07E6B38F1AF09DA200CC2598 /* DiscussionTableViewCell.swift in Sources */,
 				07DACF5F1AF33B0B00AA06EF /* NoAnimationPushSegue.swift in Sources */,
@@ -494,11 +524,13 @@
 					"$(inherited)",
 					"/Users/eric/Downloads/realm-cocoa-0.91.3/ios",
 					"$(PROJECT_DIR)/Plato",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Plato/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = Plato/Header.h;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -511,11 +543,13 @@
 					"$(inherited)",
 					"/Users/eric/Downloads/realm-cocoa-0.91.3/ios",
 					"$(PROJECT_DIR)/Plato",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Plato/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = Plato/Header.h;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};

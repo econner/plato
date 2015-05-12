@@ -12,13 +12,20 @@ class DiscussionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var participantsLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     var discussion: Discussion? {
         didSet {
             participantsLabel.text = discussion!.getParticipantsText()
             
             // TODO: make this async
-            thumbnail.image = UIImage(data: NSData(contentsOfURL: NSURL(string: discussion!.image_url)!)!)
+            if let url = NSURL(string: discussion!.image_url) {
+                if let data = NSData(contentsOfURL: url) {
+                    thumbnail.image = UIImage(data: data)
+                }
+            }
+            
+            descriptionLabel.text = discussion!.text
         }
     }
     

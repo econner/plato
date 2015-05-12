@@ -19,11 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        PlatoApiClient.ping()
+        
         // Reset the realm
         realm.beginWriteTransaction()
         realm.deleteAllObjects()
         realm.commitWriteTransaction()
-        
+
         // Create some users
         let user1 = User()
         user1.first_name = "Eric"
@@ -34,6 +36,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         user2.first_name = "Hari"
         user2.last_name = "Arul"
         user2.phone = "2482073606"
+        
+        // Add some contacts
+        let user3 = User()
+        user3.first_name = "Isabel"
+        user3.last_name = "Sosa"
+        user3.phone = "5555555555"
+        
+        user1.contacts.addObject(user2)
+        user1.contacts.addObject(user3)
+        
+        user2.contacts.addObject(user1)
+        user2.contacts.addObject(user3)
+        
+        user3.contacts.addObject(user1)
+        user3.contacts.addObject(user2)
         
         // Create a discussion
         let discussion = Discussion()
@@ -51,9 +68,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         realm.beginWriteTransaction()
         realm.addObject(user1)
         realm.addObject(user2)
+        realm.addObject(user3)
         realm.addObject(discussion)
         realm.addObject(message)
         realm.commitWriteTransaction()
+        
+        println(User.currentUser())
         
         return true
     }
@@ -73,7 +93,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        // Display login controller if not current user logged in.
+        if User.currentUser() == nil {
+            if var loginController = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as? UIViewController {
+                self.window?.rootViewController?.presentViewController(loginController, animated: false, completion: nil)
+            }
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {

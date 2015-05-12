@@ -7,25 +7,14 @@
 //
 
 import UIKit
+import THContactPicker
 
-class Contact : Equatable {
-    var name = ""
-}
-
-func ==(lhs: Contact, rhs: Contact) -> Bool
-{
-    return lhs.name == rhs.name
-}
-//
-//protocol ChooseContactsDelegate {
-//    func didSelectContacts:
-//}
 
 class ChooseContactsViewController: UIViewController, THContactPickerDelegate, UITableViewDataSource, UITableViewDelegate {
     
-    var contacts: [Contact] = []
-    var privateSelectedContacts: [Contact] = []
-    var filteredContacts: [Contact] = []
+    var contacts: [User] = []
+    var privateSelectedContacts: [User] = []
+    var filteredContacts: [User] = []
     
     var contactPickerView: THContactPickerView!
     var tableView: UITableView!
@@ -37,13 +26,6 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "finishSelectingContacts:")
         
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let names = ["Hari Arul", "Eric Conner", "Isabel Sosa", "Daniel Lynch", "Lily Guo", "Andres Morales", "John Smith", "Joe Vrion", "Angela Merkel"]
-        for name in names {
-            var contact = Contact()
-            contact.name = name
-            contacts.append(contact)
-        }
         self.filteredContacts = contacts
         
         self.edgesForExtendedLayout = UIRectEdge.None
@@ -169,7 +151,7 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
     }
     
     func contactPickerDidRemoveContact(contactObj: AnyObject) {
-        if let contact = contactObj as? Contact {
+        if let contact = contactObj as? User {
             println("Removed contact: \(contact)")
             if let index = find(self.privateSelectedContacts, contact) {
                 self.privateSelectedContacts.removeAtIndex(index)
@@ -183,10 +165,11 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
         println("contactPickerTextFieldShouldReturn")
         if count(textField.text) > 0 {
             var contactName = textField.text
-            var contact = Contact()
-            contact.name = contactName
-            self.privateSelectedContacts.append(contact);
-            self.contactPickerView.addContact(contact, withName:contactName);
+// TODO
+//            var contact = User()
+//            contact.name = contactName
+//            self.privateSelectedContacts.append(contact);
+//            self.contactPickerView.addContact(contact, withName:contactName);
         }
         return true
     }

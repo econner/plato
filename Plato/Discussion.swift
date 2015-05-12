@@ -18,7 +18,9 @@ class Discussion: RLMObject {
     
     func getParticipantsText() -> String {
         var names = [String]()
-        names.append(self.user!.first_name)
+        if let user = self.user {
+            names.append(user.first_name)
+        }
         for participant in self.participants {
             let user = participant as! User
             names.append(user.first_name)

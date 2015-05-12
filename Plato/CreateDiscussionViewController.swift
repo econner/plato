@@ -7,14 +7,28 @@
 //
 
 import UIKit
+import Realm
+import THContactPicker
 
 class CreateDiscussionViewController: UIViewController, UITextFieldDelegate {
     
     var showContactsButton: UIButton!
     var contactPickerView: THContactPickerView!
-    var selectedContacts: [Contact] = []
+    var selectedContacts: [User] = []
+    let realm = RLMRealm.defaultRealm()
     
     @IBOutlet weak var discussionText: UITextView!
+    
+    @IBAction func createDiscussion(sender: UIBarButtonItem) {
+        println("createDiscussion")
+        let discussion = Discussion()
+        discussion.image_url = ""
+        discussion.text = self.discussionText.text
+        
+        realm.beginWriteTransaction()
+        realm.addObject(discussion)
+        realm.commitWriteTransaction()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +36,6 @@ class CreateDiscussionViewController: UIViewController, UITextFieldDelegate {
         self.edgesForExtendedLayout = UIRectEdge.None
         self.automaticallyAdjustsScrollViewInsets = false
         self.discussionText.backgroundColor = UIColor.grayColor()
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         
         self.contactPickerView = THContactPickerView(frame: CGRectMake(0, 0, self.view.frame.size.width, 100.0))
         self.contactPickerView.setPromptLabelText("To:")
