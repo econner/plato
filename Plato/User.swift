@@ -9,6 +9,10 @@
 import Realm
 
 class User: RLMObject, Equatable {
+    
+    static let defaults = NSUserDefaults.standardUserDefaults()
+    
+    dynamic var id = 0
     dynamic var phone = ""
     dynamic var first_name = ""
     dynamic var last_name = ""
@@ -22,8 +26,16 @@ class User: RLMObject, Equatable {
         }
     }
     
+    static func setCurrentUser(userId: Int) {
+        defaults.setObject(String(userId), forKey: "currentUserId")
+    }
+    
     static func currentUser() -> User? {
-        var users = self.objectsWhere("phone='3033507959'")
+        var userId = defaults.stringForKey("currentUserId")?.toInt()
+        if userId == nil {
+            return nil
+        }
+        var users = self.objectsWhere("id=%@", userId!)
         return users[0] as? User
     }
 }

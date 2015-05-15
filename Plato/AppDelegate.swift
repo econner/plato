@@ -19,8 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        PlatoApiClient.ping()
-        
         // Reset the realm
         realm.beginWriteTransaction()
         realm.deleteAllObjects()
@@ -28,9 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Create some users
         let user1 = User()
-        user1.first_name = "Eric"
+        user1.first_name = "Joe"
         user1.last_name = "Conner"
-        user1.phone = "3033507959"
+        user1.phone = "5556167896"
         
         let user2 = User()
         user2.first_name = "Hari"
@@ -95,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Display login controller if not current user logged in.
         if User.currentUser() == nil {
-            if var loginController = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as? UIViewController {
+            if var loginController = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("authNavController") as? UIViewController {
                 self.window?.rootViewController?.presentViewController(loginController, animated: false, completion: nil)
             }
         }
