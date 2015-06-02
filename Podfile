@@ -7,6 +7,9 @@ target 'Plato' do
     pod 'SwiftHTTP', '~> 0.9.2'
     pod 'Alamofire', '~> 1.2'
     pod "SwiftyJSON", ">= 2.2"
+    pod 'RealmSwift'
+    pod 'JSQMessagesViewController'
+    pod 'Socket.IO-Client-Swift'
 end
 
 target 'PlatoTests' do

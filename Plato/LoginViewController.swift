@@ -2,14 +2,22 @@
 //  LoginViewController.swift
 //  Plato
 //
-//  Created by Eric Conner on 5/12/15.
+//  Created by Eric Conner on 5/18/15.
 //  Copyright (c) 2015 com.platoapp. All rights reserved.
 //
 
 import UIKit
+import RealmSwift
 
 class LoginViewController: UITableViewController {
+    
+    let realm = Realm()
 
+    @IBOutlet weak var phoneExtension: UITextField!
+    @IBOutlet weak var phoneNumber: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,74 +32,55 @@ class LoginViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
-
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        // #warning Potentially incomplete method implementation.
-//        // Return the number of sections.
-//        return 0
-//    }
-//
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete method implementation.
-//        // Return the number of rows in the section.
-//        return 0
-//    }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
-        return cell
+    
+    func showLoadingIndicator() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.loadingIndicator.startAnimating()
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    
+    func hideLoadingIndicator() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.loadingIndicator.stopAnimating()
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func showError(msg: String) {
+        var tc = ToastConfig.sharedInstance()
+        Toast.makeToast(msg).show()
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
+    @IBAction func startLogin(sender: UIButton) {
+        self.showLoadingIndicator()
+        let params = [
+            "phone": self.phoneExtension.text + self.phoneNumber.text,
+            "password": self.password.text,
+        ]
+        println("LoginViewController.startLogin")
+        
+        PlatoApiService.login(params) { data, error in
+            self.hideLoadingIndicator()
+            
+            if error == nil && data["status"].string! == "success" {
+                let user = User.fromJson(data["data"])
+                
+                self.realm.write {
+                    self.realm.add(user, update: true)
+                }
+                
+                User.setCurrentUser(user.id)
+                
+                self.dismissViewControllerAnimated(false, completion: nil)
+            } else {
+                if let message = data["message"].string {
+                    self.showError(message)
+                } else {
+                    if let errorMsg = error?.description {
+                        self.showError(errorMsg)
+                    }
+                }
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

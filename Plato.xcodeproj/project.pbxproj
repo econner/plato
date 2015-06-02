@@ -9,19 +9,20 @@
 /* Begin PBXBuildFile section */
 		024B5A02E938499B4F4E3D79 /* Pods_Plato.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6562A287E2AB0BAB38F717A3 /* Pods_Plato.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		072B52B21B063C3500E702D1 /* PlatoApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072B52B11B063C3500E702D1 /* PlatoApiService.swift */; };
+		074A05E21B0C4CD30024CD91 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A05E01B0C4CD30024CD91 /* Toast.swift */; };
+		074A05E31B0C4CD30024CD91 /* ToastConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A05E11B0C4CD30024CD91 /* ToastConfig.swift */; };
+		074A05E61B0C5A040024CD91 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A05E51B0C5A040024CD91 /* MessagesViewController.swift */; };
+		07733B9F1B0AE5950017EEB8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07733B9E1B0AE5950017EEB8 /* LoginViewController.swift */; };
 		077B01DE1B0639DF005C7BBB /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B01DD1B0639DF005C7BBB /* SignupViewController.swift */; };
 		078435141AF1311500DB62FA /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078435131AF1311500DB62FA /* libc++.dylib */; };
 		0784351C1AF131B900DB62FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784351B1AF131B900DB62FA /* User.swift */; };
 		0784351E1AF1321900DB62FA /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784351D1AF1321900DB62FA /* Discussion.swift */; };
 		078435201AF132F600DB62FA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784351F1AF132F600DB62FA /* Message.swift */; };
 		078435221AF1E99900DB62FA /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078435211AF1E99900DB62FA /* ViewExtensions.swift */; };
-		07ADFA291AF7173100BBB8E0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ADFA281AF7173100BBB8E0 /* Realm.framework */; };
-		07ADFA2B1AF7173900BBB8E0 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ADFA2A1AF7173900BBB8E0 /* RLMSupport.swift */; };
 		07ADFA2D1AF71CA300BBB8E0 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ADFA2C1AF71CA300BBB8E0 /* ContactTableViewCell.swift */; };
 		07DACF5B1AF32B5000AA06EF /* CreateDiscussionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DACF5A1AF32B5000AA06EF /* CreateDiscussionViewController.swift */; };
 		07DACF5D1AF3358100AA06EF /* ChooseContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DACF5C1AF3358100AA06EF /* ChooseContactsViewController.swift */; };
 		07DACF5F1AF33B0B00AA06EF /* NoAnimationPushSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DACF5E1AF33B0B00AA06EF /* NoAnimationPushSegue.swift */; };
-		07E24FEF1B02E28F00FD7DA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E24FEE1B02E28F00FD7DA5 /* LoginViewController.swift */; };
 		07E6B3691AF099E500CC2598 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E6B3681AF099E500CC2598 /* AppDelegate.swift */; };
 		07E6B36D1AF099E500CC2598 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E6B36C1AF099E500CC2598 /* SecondViewController.swift */; };
 		07E6B3701AF099E500CC2598 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E6B36E1AF099E500CC2598 /* Main.storyboard */; };
@@ -45,19 +46,21 @@
 
 /* Begin PBXFileReference section */
 		072B52B11B063C3500E702D1 /* PlatoApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatoApiService.swift; sourceTree = "<group>"; };
+		074A05E01B0C4CD30024CD91 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		074A05E11B0C4CD30024CD91 /* ToastConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastConfig.swift; sourceTree = "<group>"; };
+		074A05E51B0C5A040024CD91 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		074A05E81B0C5D1B0024CD91 /* Plato-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plato-Bridging-Header.h"; sourceTree = "<group>"; };
+		07733B9E1B0AE5950017EEB8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		077B01DD1B0639DF005C7BBB /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		078435131AF1311500DB62FA /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		0784351B1AF131B900DB62FA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0784351D1AF1321900DB62FA /* Discussion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		0784351F1AF132F600DB62FA /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		078435211AF1E99900DB62FA /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
-		07ADFA281AF7173100BBB8E0 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
-		07ADFA2A1AF7173900BBB8E0 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
 		07ADFA2C1AF71CA300BBB8E0 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactTableViewCell.swift; path = ../../Plato/Plato/ContactTableViewCell.swift; sourceTree = "<group>"; };
 		07DACF5A1AF32B5000AA06EF /* CreateDiscussionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDiscussionViewController.swift; sourceTree = "<group>"; };
 		07DACF5C1AF3358100AA06EF /* ChooseContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseContactsViewController.swift; sourceTree = "<group>"; };
 		07DACF5E1AF33B0B00AA06EF /* NoAnimationPushSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAnimationPushSegue.swift; sourceTree = "<group>"; };
-		07E24FEE1B02E28F00FD7DA5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		07E6B3631AF099E500CC2598 /* Plato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07E6B3671AF099E500CC2598 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07E6B3681AF099E500CC2598 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07ADFA291AF7173100BBB8E0 /* Realm.framework in Frameworks */,
 				078435141AF1311500DB62FA /* libc++.dylib in Frameworks */,
 				024B5A02E938499B4F4E3D79 /* Pods_Plato.framework in Frameworks */,
 			);
@@ -109,11 +111,12 @@
 			isa = PBXGroup;
 			children = (
 				077B01DD1B0639DF005C7BBB /* SignupViewController.swift */,
-				07E24FEE1B02E28F00FD7DA5 /* LoginViewController.swift */,
 				07E6B36C1AF099E500CC2598 /* SecondViewController.swift */,
 				07DACF5A1AF32B5000AA06EF /* CreateDiscussionViewController.swift */,
 				07E6B38C1AF09CE000CC2598 /* DiscussionTableViewController.swift */,
 				07DACF5C1AF3358100AA06EF /* ChooseContactsViewController.swift */,
+				07733B9E1B0AE5950017EEB8 /* LoginViewController.swift */,
+				074A05E51B0C5A040024CD91 /* MessagesViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -128,16 +131,6 @@
 				07E7649E1AF86A8A00188E92 /* ContactPickerTextField.swift */,
 			);
 			name = views;
-			sourceTree = "<group>";
-		};
-		078435191AF1316800DB62FA /* realm */ = {
-			isa = PBXGroup;
-			children = (
-				078435131AF1311500DB62FA /* libc++.dylib */,
-				07ADFA2A1AF7173900BBB8E0 /* RLMSupport.swift */,
-				07ADFA281AF7173100BBB8E0 /* Realm.framework */,
-			);
-			name = realm;
 			sourceTree = "<group>";
 		};
 		0784351A1AF1319000DB62FA /* models */ = {
@@ -181,8 +174,11 @@
 				07E6B36E1AF099E500CC2598 /* Main.storyboard */,
 				07E6B3711AF099E500CC2598 /* Images.xcassets */,
 				07E6B3731AF099E500CC2598 /* LaunchScreen.xib */,
-				078435191AF1316800DB62FA /* realm */,
+				074A05E01B0C4CD30024CD91 /* Toast.swift */,
+				074A05E11B0C4CD30024CD91 /* ToastConfig.swift */,
+				078435131AF1311500DB62FA /* libc++.dylib */,
 				07E6B3661AF099E500CC2598 /* Supporting Files */,
+				074A05E81B0C5D1B0024CD91 /* Plato-Bridging-Header.h */,
 			);
 			path = Plato;
 			sourceTree = "<group>";
@@ -281,6 +277,7 @@
 				TargetAttributes = {
 					07E6B3621AF099E500CC2598 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = T73AWLSEBV;
 					};
 					07E6B3791AF099E500CC2598 = {
 						CreatedOnToolsVersion = 6.3;
@@ -382,6 +379,8 @@
 			files = (
 				07ADFA2D1AF71CA300BBB8E0 /* ContactTableViewCell.swift in Sources */,
 				07E6B36D1AF099E500CC2598 /* SecondViewController.swift in Sources */,
+				074A05E21B0C4CD30024CD91 /* Toast.swift in Sources */,
+				074A05E61B0C5A040024CD91 /* MessagesViewController.swift in Sources */,
 				07E6B3691AF099E500CC2598 /* AppDelegate.swift in Sources */,
 				07DACF5B1AF32B5000AA06EF /* CreateDiscussionViewController.swift in Sources */,
 				0784351C1AF131B900DB62FA /* User.swift in Sources */,
@@ -392,11 +391,11 @@
 				078435201AF132F600DB62FA /* Message.swift in Sources */,
 				077B01DE1B0639DF005C7BBB /* SignupViewController.swift in Sources */,
 				07E6B38D1AF09CE000CC2598 /* DiscussionTableViewController.swift in Sources */,
-				07E24FEF1B02E28F00FD7DA5 /* LoginViewController.swift in Sources */,
-				07ADFA2B1AF7173900BBB8E0 /* RLMSupport.swift in Sources */,
+				07733B9F1B0AE5950017EEB8 /* LoginViewController.swift in Sources */,
 				072B52B21B063C3500E702D1 /* PlatoApiService.swift in Sources */,
 				07E6B38F1AF09DA200CC2598 /* DiscussionTableViewCell.swift in Sources */,
 				07DACF5F1AF33B0B00AA06EF /* NoAnimationPushSegue.swift in Sources */,
+				074A05E31B0C4CD30024CD91 /* ToastConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +523,8 @@
 			baseConfigurationReference = 7B479E48CD51E5E032879D0B /* Pods-Plato.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/eric/Downloads/realm-cocoa-0.91.3/ios",
@@ -531,10 +532,12 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Plato/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				PROVISIONING_PROFILE = "";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Plato/Plato-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -543,6 +546,8 @@
 			baseConfigurationReference = 416BAE06307F4B760316170B /* Pods-Plato.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/eric/Downloads/realm-cocoa-0.91.3/ios",
@@ -550,10 +555,12 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Plato/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				PROVISIONING_PROFILE = "";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Plato/Plato-Bridging-Header.h";
 			};
 			name = Release;
 		};

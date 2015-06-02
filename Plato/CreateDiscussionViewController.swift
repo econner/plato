@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Realm
+import RealmSwift
 import THContactPicker
 
 class CreateDiscussionViewController: UIViewController, UITextFieldDelegate {
@@ -15,7 +15,7 @@ class CreateDiscussionViewController: UIViewController, UITextFieldDelegate {
     var showContactsButton: UIButton!
     var contactPickerView: THContactPickerView!
     var selectedContacts: [User] = []
-    let realm = RLMRealm.defaultRealm()
+    let realm = Realm()
     
     @IBOutlet weak var discussionText: UITextView!
     
@@ -24,10 +24,15 @@ class CreateDiscussionViewController: UIViewController, UITextFieldDelegate {
         let discussion = Discussion()
         discussion.image_url = ""
         discussion.text = self.discussionText.text
+        discussion.user = User.currentUser()
+        discussion.participants.extend(self.selectedContacts)
         
-        realm.beginWriteTransaction()
-        realm.addObject(discussion)
-        realm.commitWriteTransaction()
+        PlatoApiService.createDiscussion(discussion) { data, error in
+            println(data)
+            println(error)
+            
+            self.navigationController?.popViewControllerAnimated(false)
+        }
     }
     
     override func viewDidLoad() {

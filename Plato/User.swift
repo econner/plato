@@ -6,9 +6,10 @@
 //  Copyright (c) 2015 com.platoapp. All rights reserved.
 //
 
-import Realm
+import RealmSwift
+import SwiftyJSON
 
-class User: RLMObject, Equatable {
+class User: Object, Equatable {
     
     static let defaults = NSUserDefaults.standardUserDefaults()
     
@@ -18,7 +19,11 @@ class User: RLMObject, Equatable {
     dynamic var last_name = ""
     dynamic var avatar = ""
     
-    dynamic var contacts = RLMArray(objectClassName: User.className())
+    dynamic var contacts = List<User>()
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
     
     var name: String {
         get {
@@ -35,8 +40,24 @@ class User: RLMObject, Equatable {
         if userId == nil {
             return nil
         }
-        var users = self.objectsWhere("id=%@", userId!)
-        return users[0] as? User
+        var users = Realm().objects(User).filter("id=%d", userId!)
+        if users.count == 0 {
+            return nil
+        }
+        return users[0]
+    }
+    
+    static func getMany(userIds: [Int]) {
+        
+    }
+    
+    static func fromJson(data: JSON) -> User {
+        let user = User()
+        user.id = data["id"].int!
+        user.phone = data["phone"].string!
+        user.first_name = data["first_name"].string!
+        user.last_name = data["last_name"].string!
+        return user
     }
 }
 

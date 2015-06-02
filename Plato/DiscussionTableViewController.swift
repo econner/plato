@@ -10,6 +10,8 @@ import UIKit
 
 class DiscussionTableViewController: UITableViewController {
     
+    var discussions: [Discussion] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +21,28 @@ class DiscussionTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        println(User.currentUser())
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if let userId = User.currentUser()?.id {
+            PlatoApiService.listDiscussions(userId) { data, error in
+                var discs: [Discussion] = []
+                for (key, discJson) in data["data"]["discussions"] {
+                    var discussion = Discussion.fromJson(discJson)
+                    discs.append(discussion)
+                }
+                self.discussions = discs
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func refresh(sender:AnyObject) {
+        // TODO(eric): Actually refresh the table here.
+        
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,64 +61,33 @@ class DiscussionTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return Int(Discussion.allObjects().count)
+        return Int(self.discussions.count)
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("DiscussionCell", forIndexPath:indexPath) as? DiscussionTableViewCell {
-            
-            let discussions = Discussion.allObjects()
-            cell.discussion = discussions[UInt(indexPath.row)] as? Discussion
-            
+            cell.discussion = self.discussions[indexPath.row]
             return cell
         
         }
         return UITableViewCell()
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(tv: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tv.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowMessages" {
+            if let destination = segue.destinationViewController as? MessagesViewController {
+                if let msgIndex = tableView.indexPathForSelectedRow()?.row {
+                    destination.discussion = self.discussions[msgIndex]
+                }
+            }
+        }
     }
-    */
 
 }

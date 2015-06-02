@@ -11,8 +11,8 @@ import UIKit
 class DiscussionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var thumbnail: UIImageView!
-    @IBOutlet weak var participantsLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var participantsLabel: UILabel!
     
     var discussion: Discussion? {
         didSet {

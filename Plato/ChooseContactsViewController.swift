@@ -25,6 +25,7 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "finishSelectingContacts:")
         
+        
         // Do any additional setup after loading the view, typically from a nib.
         self.filteredContacts = contacts
         
@@ -48,6 +49,17 @@ class ChooseContactsViewController: UIViewController, THContactPickerDelegate, U
         
         for contact in self.privateSelectedContacts {
             self.contactPickerView.addContact(contact, withName: contact.name)
+        }
+        
+        if let userId = User.currentUser()?.id {
+            PlatoApiService.getContacts(userId) { data, error in
+                for (idx, userJson) in data["data", "contacts"] {
+                    var user = User.fromJson(userJson)
+                    self.contacts.append(user)
+                }
+                self.filteredContacts = self.contacts
+                self.tableView.reloadData()
+            }
         }
 
     }
